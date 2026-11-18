@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaTech — Zamonaviy texnika do'koni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#111218; --muted:#777986; --accent:#7357ff; --paper:#f5f5f7; --white:#fff; --line:#e7e7ec; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Manrope',sans-serif; color:var(--ink); background:#fff; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    .topbar { height:38px; background:#111218; color:#fff; font-size:12px; }
+    .topbar .wrap { height:100%; display:flex; align-items:center; justify-content:space-between; }
+    .wrap { max-width:1180px; margin:auto; padding:0 20px; }
+    nav { height:78px; display:flex; align-items:center; background:white; border-bottom:1px solid var(--line); }
+    nav .wrap { width:100%; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:23px; font-weight:800; letter-spacing:-1px; }
+    .logo b { color:var(--accent); }
+    .menu { display:flex; gap:28px; font-size:14px; font-weight:600; }
+    .menu a:hover { color:var(--accent); }
+    .icons { display:flex; gap:10px; }
+    .icon-btn { width:40px; height:40px; border:1px solid var(--line); border-radius:50%; background:#fff; display:grid; place-items:center; cursor:pointer; position:relative; }
+    .count { position:absolute; right:-4px; top:-5px; width:18px; height:18px; border-radius:50%; background:var(--accent); color:white; font-size:10px; display:grid; place-items:center; }
+
+    .hero { min-height:520px; display:grid; grid-template-columns:1fr 1fr; align-items:center; background:linear-gradient(120deg,#f3efff 0%,#f8f8fa 62%,#ececf3 100%); overflow:hidden; }
+    .hero-copy { padding:70px 30px 70px max(30px, calc((100vw - 1180px)/2 + 20px)); }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:2px; font-size:12px; font-weight:800; margin-bottom:18px; }
+    h1 { font-size:58px; line-height:1.02; letter-spacing:-3px; max-width:580px; }
+    .hero-copy p { color:var(--muted); max-width:480px; margin:22px 0 30px; line-height:1.7; }
+    .hero-actions { display:flex; align-items:center; gap:20px; }
+    .primary { border:0; border-radius:8px; background:var(--ink); color:white; padding:15px 24px; font-weight:700; cursor:pointer; }
+    .primary:hover { background:var(--accent); }
+    .link { border-bottom:1px solid #aaa; padding:5px 0; font-weight:700; font-size:14px; }
+    .hero-image { height:520px; background:url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=1200&q=85') center/cover; clip-path:polygon(12% 0,100% 0,100% 100%,0 100%); }
+
+    .categories { padding:78px 20px 55px; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; margin-bottom:24px; }
+    .section-head h2 { font-size:34px; letter-spacing:-1.5px; }
+    .category-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
+    .category { height:130px; border:1px solid var(--line); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; font-weight:700; background:#fafafa; transition:.25s; }
+    .category svg { width:38px; height:38px; }
+    .category:hover { transform:translateY(-5px); border-color:#c9c2ff; box-shadow:0 12px 30px rgba(40,30,90,.08); }
+
+    .products { padding:35px 20px 90px; }
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .card { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:white; transition:.25s; }
+    .card:hover { transform:translateY(-5px); box-shadow:0 16px 35px rgba(20,20,30,.09); }
+    .card-image { height:260px; position:relative; background:#f2f2f4; overflow:hidden; }
+    .card-image img { width:100%; height:100%; object-fit:cover; transition:.35s; }
+    .card:hover img { transform:scale(1.04); }
+    .badge { position:absolute; top:12px; left:12px; background:white; border-radius:20px; padding:7px 10px; font-size:11px; font-weight:800; }
+    .heart { position:absolute; right:12px; top:12px; width:36px; height:36px; border:0; border-radius:50%; background:white; cursor:pointer; }
+    .info { padding:18px; }
+    .info small { color:var(--muted); }
+    .info h3 { margin:5px 0 10px; font-size:16px; }
+    .price-row { display:flex; align-items:center; justify-content:space-between; }
+    .price { font-size:18px; font-weight:800; }
+    .add { width:38px; height:38px; border:0; border-radius:50%; background:#111218; color:white; cursor:pointer; font-size:20px; }
+    .add:hover { background:var(--accent); }
+
+    .banner { max-width:1140px; margin:0 auto 85px; min-height:300px; border-radius:18px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; background:#171820; color:white; }
+    .banner-copy { padding:55px; }
+    .banner-copy h2 { font-size:40px; line-height:1.1; margin:10px 0 16px; }
+    .banner-copy p { color:#babbc4; margin-bottom:24px; }
+    .banner-image { background:url('https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=85') center/cover; }
+
+    footer { background:#111218; color:white; padding:50px 20px; }
+    footer .wrap { display:flex; justify-content:space-between; align-items:center; }
+    footer p { color:#aaa; font-size:13px; }
+    .social { display:flex; gap:10px; }
+
+    .cart-overlay { position:fixed; inset:0; background:rgba(17,18,24,.45); z-index:90; opacity:0; pointer-events:none; transition:.25s; }
+    .cart-overlay.open { opacity:1; pointer-events:auto; }
+    .cart-drawer { position:fixed; right:0; top:0; width:min(410px,92vw); height:100%; background:white; z-index:100; transform:translateX(100%); transition:.28s; padding:24px; display:flex; flex-direction:column; }
+    .cart-drawer.open { transform:translateX(0); }
+    .cart-head { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:18px; }
+    .cart-close { border:0; background:#f1f1f4; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:18px; }
+    .cart-items { flex:1; overflow:auto; padding:16px 0; }
+    .cart-item { display:grid; grid-template-columns:58px 1fr auto; gap:12px; align-items:center; border-bottom:1px solid var(--line); padding:12px 0; }
+    .cart-item img { width:58px; height:58px; border-radius:8px; object-fit:cover; }
+    .cart-item h4 { font-size:13px; margin-bottom:5px; }
+    .cart-item small { color:var(--muted); }
+    .cart-remove { border:0; background:none; color:#b33; cursor:pointer; font-size:18px; }
+    .empty-cart { text-align:center; color:var(--muted); padding:70px 20px; }
+    .cart-foot { border-top:1px solid var(--line); padding-top:18px; }
+    .cart-total { display:flex; justify-content:space-between; font-size:18px; font-weight:800; margin-bottom:14px; }
+    .checkout { width:100%; }
+    .discount-row { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+    .old-price { color:#9a9ba4; text-decoration:line-through; font-size:12px; }
+
+    @media (max-width:900px) {
+      .menu { display:none; } .hero { grid-template-columns:1fr; } h1 { font-size:44px; }
+      .hero-copy { padding:55px 20px; } .hero-image { height:380px; clip-path:none; }
+      .category-grid { grid-template-columns:repeat(3,1fr); } .grid { grid-template-columns:repeat(2,1fr); }
+      .banner { margin-inline:20px; grid-template-columns:1fr; } .banner-image { height:260px; }
+    }
+    @media (max-width:520px) {
+      .topbar span:last-child { display:none; } .category-grid { grid-template-columns:repeat(2,1fr); }
+      .grid { grid-template-columns:1fr; } .card-image { height:300px; } .section-head h2 { font-size:28px; }
+      .banner-copy { padding:35px 25px; } h1 { font-size:39px; } .hero-actions { flex-wrap:wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="wrap"><span>Butun O'zbekiston bo'ylab yetkazib berish</span><span>24/7 qo'llab-quvvatlash · +998 90 123 45 67</span></div></div>
+  <nav><div class="wrap">
+    <a class="logo" href="#">Nova<b>Tech.</b></a>
+    <div class="menu"><a href="#">Asosiy</a><a href="#categories">Kategoriyalar</a><a href="#products">Mahsulotlar</a><a href="#">Chegirmalar</a></div>
+    <div class="icons"><button class="icon-btn" aria-label="Qidiruv">⌕</button><button class="icon-btn" aria-label="Savatcha">♡</button><button class="icon-btn" aria-label="Savat" onclick="openCart()">⌑<span class="count" id="cartCount">0</span></button></div>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-copy"><div class="eyebrow">Yangi avlod texnologiyasi</div><h1>Harakat uchun kuch, ish uchun uslub.</h1><p>Kompyuter, audio va ish stoli jihozlarining eng so'nggi modellarini qulay narxlarda tanlang.</p><div class="hero-actions"><button class="primary" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">Mahsulotlarni ko'rish</button><a class="link" href="#categories">Barcha kategoriyalar</a></div></div>
+    <div class="hero-image" role="img" aria-label="Zamonaviy ish stoli kompyuteri"></div>
+  </header>
+
+  <main>
+    <section class="categories wrap" id="categories"><div class="section-head"><h2>Kategoriyalar</h2><a class="link" href="#">Hammasini ko'rish</a></div>
+      <div class="category-grid">
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="8" y="12" width="48" height="32" rx="3"/><path d="M22 52h20M32 44v8"/></svg>Noutbuklar</a>
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="20" y="5" width="24" height="54" rx="5"/><circle cx="32" cy="51" r="2"/></svg>Kompyuterlar</a>
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 30v-7a12 12 0 0124 0v7M16 28h8v18h-8zM40 28h8v18h-8zM48 38c0 8-8 12-16 12"/></svg>Naushniklar</a>
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="6" y="18" width="52" height="28" rx="3"/><path d="M12 24h7m5 0h7m5 0h7m5 0h4M12 31h16m5 0h19M16 38h32"/></svg>Klaviatura</a>
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="20" y="8" width="24" height="48" rx="12"/><path d="M32 8v22M20 30h24"/></svg>Bluetooth</a>
+        <a class="category" href="#products"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="12" y="10" width="40" height="44" rx="3"/><circle cx="32" cy="32" r="7"/></svg>Kovriklar</a>
+      </div>
+    </section>
+
+    <section class="products wrap" id="products"><div class="section-head"><h2>Eng sara mahsulotlar</h2><a class="link" href="#">Barchasini ko'rish</a></div>
+      <div class="grid">
+        <article class="card"><div class="card-image"><span class="badge">YANGI</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85" alt="Noutbuk"></div><div class="info"><small>NovaBook</small><h3>NovaBook Air M3</h3><div class="price-row"><span class="price">12 499 000 so'm</span><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-12%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85" alt="Naushnik"></div><div class="info"><small>SoundMax</small><h3>Pro Wireless X2</h3><div class="discount-row"><div><span class="old-price">2 149 000</span><br><span class="price">1 890 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-15%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=85" alt="Mexanik klaviatura"></div><div class="info"><small>KeyFlow</small><h3>Mechanical 75 RGB</h3><div class="discount-row"><div><span class="old-price">1 670 000</span><br><span class="price">1 420 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">YANGI</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=700&q=85" alt="Simsiz sichqoncha"></div><div class="info"><small>SwiftGear</small><h3>Mouse Ultra 3K</h3><div class="discount-row"><div><span class="old-price">990 000</span><br><span class="price">890 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-10%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1629429408209-1f912961dbd8?auto=format&fit=crop&w=700&q=85" alt="Kompyuter monitori"></div><div class="info"><small>ViewPro</small><h3>Gaming Display 27"</h3><div class="discount-row"><div><span class="old-price">4 055 000</span><br><span class="price">3 650 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-8%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?auto=format&fit=crop&w=700&q=85" alt="Veb kamera"></div><div class="info"><small>ClearView</small><h3>4K Stream Camera</h3><div class="discount-row"><div><span class="old-price">825 000</span><br><span class="price">760 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">TOP</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&w=700&q=85" alt="Mishka va kovrik"></div><div class="info"><small>DeskCore</small><h3>Premium Desk Set</h3><div class="discount-row"><div><span class="old-price">600 000</span><br><span class="price">540 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">YANGI</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=700&q=85" alt="Planshet"></div><div class="info"><small>Nexa Pad</small><h3>Studio Tablet 11</h3><div class="discount-row"><div><span class="old-price">5 490 000</span><br><span class="price">4 990 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-20%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=700&q=85" alt="Gaming PC"></div><div class="info"><small>Nova PC</small><h3>Gaming Station RTX</h3><div class="discount-row"><div><span class="old-price">18 500 000</span><br><span class="price">14 800 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">TOP</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=700&q=85" alt="Quloqchin"></div><div class="info"><small>SonicPro</small><h3>Studio Headphones</h3><div class="discount-row"><div><span class="old-price">1 990 000</span><br><span class="price">1 690 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">-18%</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&w=700&q=85" alt="Smartwatch"></div><div class="info"><small>Pulse</small><h3>Smart Watch S5</h3><div class="discount-row"><div><span class="old-price">1 450 000</span><br><span class="price">1 190 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+        <article class="card"><div class="card-image"><span class="badge">YANGI</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&w=700&q=85" alt="Portativ kolonka"></div><div class="info"><small>BassGo</small><h3>Portable Speaker Mini</h3><div class="discount-row"><div><span class="old-price">950 000</span><br><span class="price">790 000 so'm</span></div><button class="add" onclick="addToCart(this)">+</button></div></div></article>
+      </div>
+    </section>
+
+    <section class="banner"><div class="banner-copy"><div class="eyebrow">Cheklangan taklif</div><h2>Ishni yangi darajaga chiqaring.</h2><p>Professional setup uchun -20% gacha chegirma.</p><button class="primary" style="background:white;color:#111218" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">Tanlash</button></div><div class="banner-image"></div></section>
+  </main>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Savat">
+    <div class="cart-head"><h2>Savatcha</h2><button class="cart-close" onclick="closeCart()">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot"><div class="cart-total"><span>Jami:</span><span id="cartTotal">0 so'm</span></div><button class="primary checkout" onclick="checkout()">Buyurtma berish</button></div>
+  </aside>
+
+  <footer><div class="wrap"><div><a class="logo" href="#">Nova<b>Tech.</b></a><p style="margin-top:10px">Texnologiya hayot sifatini o'zgartiradi.</p></div><p>© 2026 NovaTech. Barcha huquqlar himoyalangan.</p></div></footer>
+  <script>
+    let cart = [];
+
+    function parsePrice(text) { return Number(text.replace(/[^0-9]/g,'')); }
+
+    function addToCart(btn) {
+      const card = btn.closest('.card');
+      const name = card.querySelector('h3').textContent;
+      const priceText = card.querySelector('.price').textContent;
+      const img = card.querySelector('img').src;
+      const found = cart.find(item => item.name === name);
+      if (found) found.qty++; else cart.push({name, price:parsePrice(priceText), priceText, img, qty:1});
+      btn.textContent='✓'; setTimeout(()=>btn.textContent='+',900);
+      renderCart();
+      openCart();
+    }
+
+    function renderCart() {
+      const items = document.getElementById('cartItems');
+      const count = cart.reduce((sum,item)=>sum+item.qty,0);
+      document.getElementById('cartCount').textContent=count;
+      if (!cart.length) { items.innerHTML='<div class="empty-cart">Savatchangiz hozircha bo‘sh</div>'; }
+      else items.innerHTML=cart.map((item,index)=>`<div class="cart-item"><img src="${item.img}" alt=""><div><h4>${item.name}</h4><small>${item.priceText} × ${item.qty}</small></div><button class="cart-remove" onclick="removeFromCart(${index})" aria-label="O'chirish">×</button></div>`).join('');
+      const total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+      document.getElementById('cartTotal').textContent=total.toLocaleString('uz-UZ')+" so'm";
+    }
+
+    function removeFromCart(index) { cart.splice(index,1); renderCart(); }
+    function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+    function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+    function checkout() { if(!cart.length) return alert('Savatchangiz bo‘sh'); alert('Buyurtmangiz qabul qilindi!'); cart=[]; renderCart(); closeCart(); }
+
+    document.querySelectorAll('.heart').forEach(b=>b.addEventListener('click',()=>{b.textContent=b.textContent==='♡'?'♥':'♡'; b.style.color=b.textContent==='♥'?'#7357ff':'';}));
+    renderCart();
+  </script>
+</body>
+</html>
